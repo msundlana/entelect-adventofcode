@@ -18,7 +18,6 @@ public class Day1 {
         }
 
         System.out.println(getSumOfAllCalibrationValues(inputList));
-        System.out.println("Some ones implementation: " + part2(inputList));
 
     }
 
@@ -81,51 +80,5 @@ public class Day1 {
         return arrayList;
     }
 
-    public static String part2(List<String> lines) {
-        int result = 0;
 
-        for (String line : lines) {
-            StringBuilder number = new StringBuilder();
-
-            StringBuilder numbersParts = new StringBuilder();
-            for (Character c : line.toCharArray()) {
-                numbersParts.append(c);
-                numbersParts = new StringBuilder(replaceWordDigits(numbersParts.toString()));
-
-                char ch = numbersParts.charAt(numbersParts.length() - 1);
-                if (Character.isDigit(ch)) {
-                    number.append(ch);
-                    break;
-                }
-            }
-
-            numbersParts.setLength(0);
-            for (int i = line.length() - 1; i >= 0; i--) {
-                numbersParts.insert(0, line.charAt(i));
-                numbersParts = new StringBuilder(replaceWordDigits(numbersParts.toString()));
-
-                char ch = numbersParts.charAt(0);
-                if (Character.isDigit(ch)) {
-                    number.append(ch);
-                    break;
-                }
-            }
-
-            result += Integer.parseInt(number.length()==0 ? "0" : number.toString());
-        }
-
-        return Integer.toString(result);
-    }
-
-    private static String replaceWordDigits(String s) {
-        return s.replaceAll("one", "1")
-                .replaceAll("two", "2")
-                .replaceAll("three", "3")
-                .replaceAll("four", "4")
-                .replaceAll("five", "5")
-                .replaceAll("six", "6")
-                .replaceAll("seven", "7")
-                .replaceAll("eight", "8")
-                .replaceAll("nine", "9");
-    }
 }
